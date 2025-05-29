@@ -1,0 +1,529 @@
+/* CSS переменные для кастомизации */
+:root {
+    --iq-cookie-primary: #007cba;
+    --iq-cookie-primary-hover: #005a82;
+    --iq-cookie-background: #ffffff;
+    --iq-cookie-text: #333333;
+    --iq-cookie-text-secondary: #555555;
+    --iq-cookie-border: #e0e0e0;
+    --iq-cookie-border-hover: #d0d0d0;
+    --iq-cookie-surface: #f9f9f9;
+    --iq-cookie-surface-hover: #f0f0f0;
+    --iq-cookie-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    --iq-cookie-radius: 8px;
+    --iq-cookie-radius-small: 6px;
+    --iq-cookie-spacing: 20px;
+    --iq-cookie-spacing-small: 15px;
+}
+
+/* Основной виджет */
+.iq-cookie-consent {
+    position: fixed;
+    z-index: 10000;
+    max-width: 400px;
+    transition: all 0.3s ease;
+}
+
+/* Модификаторы позиции */
+.iq-cookie-consent--position-bottom-left {
+    bottom: var(--iq-cookie-spacing);
+    left: var(--iq-cookie-spacing);
+    right: auto;
+}
+
+.iq-cookie-consent--position-bottom-right {
+    bottom: var(--iq-cookie-spacing);
+    right: var(--iq-cookie-spacing);
+    left: auto;
+}
+
+.iq-cookie-consent--position-bottom-center {
+    bottom: var(--iq-cookie-spacing);
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+}
+
+/* Скрытое состояние */
+.iq-cookie-consent--hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.iq-cookie-consent--position-bottom-center.iq-cookie-consent--hidden {
+    transform: translateX(-50%) translateY(100%);
+}
+
+/* Панель */
+.iq-cookie-consent__panel {
+    background: var(--iq-cookie-background);
+    border-radius: var(--iq-cookie-radius);
+    padding: var(--iq-cookie-spacing);
+    box-shadow: var(--iq-cookie-shadow);
+    transition: all 0.3s ease;
+    max-height: calc(100vh - var(--iq-cookie-spacing) * 2);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Кастомный скроллбар */
+.iq-cookie-consent__panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.iq-cookie-consent__panel::-webkit-scrollbar-track {
+    background: var(--iq-cookie-surface);
+    border-radius: 3px;
+}
+
+.iq-cookie-consent__panel::-webkit-scrollbar-thumb {
+    background: var(--iq-cookie-border);
+    border-radius: 3px;
+}
+
+.iq-cookie-consent__panel::-webkit-scrollbar-thumb:hover {
+    background: var(--iq-cookie-border-hover);
+}
+
+/* Модификатор для простой панели */
+.iq-cookie-consent__panel--simple {
+    padding: 16px var(--iq-cookie-spacing);
+}
+
+/* Заголовок */
+.iq-cookie-consent__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--iq-cookie-spacing-small);
+}
+
+.iq-cookie-consent__panel--simple .iq-cookie-consent__header {
+    margin-bottom: 12px;
+}
+
+.iq-cookie-consent__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--iq-cookie-text);
+}
+
+/* Кнопка назад */
+.iq-cookie-consent__back-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--iq-cookie-radius-small);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.iq-cookie-consent__back-button:hover {
+    background-color: var(--iq-cookie-surface);
+}
+
+.iq-cookie-consent__back-button--show {
+    display: flex;
+}
+
+.iq-cookie-consent__back-icon {
+    width: 20px;
+    height: 20px;
+    color: #666;
+}
+
+/* Контент */
+.iq-cookie-consent__content {
+    position: relative;
+    min-height: 120px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.iq-cookie-consent__panel--simple .iq-cookie-consent__content {
+    min-height: auto;
+}
+
+/* Основной контент */
+.iq-cookie-consent__main-content {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.iq-cookie-consent__main-content--hidden {
+    opacity: 0;
+    transform: translateX(-20px);
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Контент настроек */
+.iq-cookie-consent__settings-content {
+    opacity: 0;
+    transform: translateX(20px);
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.iq-cookie-consent__settings-content--active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    position: relative;
+}
+
+/* Текст */
+.iq-cookie-consent__text {
+    margin-bottom: var(--iq-cookie-spacing);
+    line-height: 1.5;
+    color: var(--iq-cookie-text-secondary);
+}
+
+.iq-cookie-consent__panel--simple .iq-cookie-consent__text {
+    margin-bottom: 16px;
+}
+
+.iq-cookie-consent__text p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
+
+.iq-cookie-consent__panel--simple .iq-cookie-consent__text p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.iq-cookie-consent__text a {
+    color: var(--iq-cookie-primary);
+    text-decoration: none;
+}
+
+.iq-cookie-consent__text a:hover {
+    text-decoration: underline;
+}
+
+/* Аккордеон */
+.iq-cookie-consent__accordion {
+    margin-bottom: var(--iq-cookie-spacing);
+}
+
+.iq-cookie-consent__accordion-item {
+    border: 1px solid var(--iq-cookie-border);
+    border-radius: var(--iq-cookie-radius-small);
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.iq-cookie-consent__accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--iq-cookie-spacing-small);
+    cursor: pointer;
+    background: var(--iq-cookie-surface);
+    transition: background-color 0.2s;
+}
+
+.iq-cookie-consent__accordion-header:hover {
+    background: var(--iq-cookie-surface-hover);
+}
+
+.iq-cookie-consent__accordion-title {
+    font-weight: 500;
+    color: var(--iq-cookie-text);
+    font-size: 14px;
+    flex: 1;
+    cursor: pointer;
+}
+
+.iq-cookie-consent__accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: var(--iq-cookie-background);
+}
+
+.iq-cookie-consent__accordion-item--expanded .iq-cookie-consent__accordion-content {
+    max-height: max-content;
+    padding: var(--iq-cookie-spacing-small);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Переключатель */
+.iq-cookie-consent__switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-left: var(--iq-cookie-spacing-small);
+}
+
+.iq-cookie-consent__switch-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.iq-cookie-consent__switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.iq-cookie-consent__switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.iq-cookie-consent__switch-input:checked + .iq-cookie-consent__switch-slider {
+    background-color: var(--iq-cookie-primary);
+}
+
+.iq-cookie-consent__switch-input:checked + .iq-cookie-consent__switch-slider:before {
+    transform: translateX(26px);
+}
+
+.iq-cookie-consent__switch-input:disabled + .iq-cookie-consent__switch-slider {
+    background-color: var(--iq-cookie-primary);
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Кнопки */
+.iq-cookie-consent__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: var(--iq-cookie-spacing);
+    flex-shrink: 0;
+}
+
+.iq-cookie-consent__buttons--simple {
+    margin-top: 0;
+}
+
+/* Базовые стили кнопок */
+.iq-cookie-consent__button {
+    position: relative;
+    border: none;
+    padding: 12px var(--iq-cookie-spacing);
+    border-radius: var(--iq-cookie-radius-small);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Акцентные кнопки (Принять, Разрешить все) */
+.iq-cookie-consent__button--primary {
+    background: var(--iq-cookie-primary);
+    color: white;
+}
+
+.iq-cookie-consent__button--primary:hover {
+    background: var(--iq-cookie-primary-hover);
+    transform: translateY(-1px);
+}
+
+/* Обычные кнопки (с прозрачным фоном и бордером) */
+.iq-cookie-consent__button--secondary {
+    background: transparent;
+    color: var(--iq-cookie-primary);
+    border: 1px solid var(--iq-cookie-primary);
+}
+
+.iq-cookie-consent__button--secondary:hover {
+    background: var(--iq-cookie-primary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.iq-cookie-consent__buttons--simple .iq-cookie-consent__button {
+    width: 100%;
+    padding: 10px var(--iq-cookie-spacing);
+    font-weight: 600;
+}
+
+.iq-cookie-consent__button:active {
+    transform: translateY(0);
+}
+
+.iq-cookie-consent__button:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    transform: none;
+}
+
+.iq-cookie-consent__button-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .iq-cookie-consent {
+        max-width: none;
+        left: 10px !important;
+        right: 10px !important;
+        bottom: 10px !important;
+        transform: none !important;
+    }
+    
+    .iq-cookie-consent--position-bottom-center {
+        transform: none;
+    }
+    
+    .iq-cookie-consent--hidden {
+        transform: translateY(100%) !important;
+    }
+    
+    .iq-cookie-consent__panel {
+        padding: var(--iq-cookie-spacing-small);
+    }
+    
+    .iq-cookie-consent__button {
+        padding: 10px var(--iq-cookie-spacing-small);
+        font-size: 13px;
+    }
+    
+    .iq-cookie-consent__accordion-header {
+        padding: 12px;
+    }
+    
+    .iq-cookie-consent__accordion-title {
+        font-size: 13px;
+    }
+}
+
+/* Анимации для плавного переключения */
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+}
+
+.iq-cookie-consent__main-content.slide-out {
+    animation: slideOutToLeft 0.3s ease forwards;
+}
+
+.iq-cookie-consent__settings-content.slide-in {
+    animation: slideInFromRight 0.3s ease forwards;
+}
+
+/* Простой режим */
+.iq-cookie-consent__panel--simple {
+    padding: 16px var(--iq-cookie-spacing);
+}
+
+.iq-cookie-consent__panel--simple .iq-cookie-consent__header {
+    margin-bottom: 12px;
+}
+
+.iq-cookie-consent__panel--simple .iq-cookie-consent__content {
+    min-height: auto;
+}
+
+.iq-cookie-consent__panel--simple .iq-cookie-consent__text {
+    margin-bottom: 16px;
+}
+
+.iq-cookie-consent__panel--simple .iq-cookie-consent__text p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.iq-cookie-consent__buttons--simple .iq-cookie-consent__button {
+    width: 100%;
+    padding: 10px var(--iq-cookie-spacing);
+    font-weight: 600;
+}
+
+/* Пользовательские темы и классы */
+/* 
+Для создания собственной темы используйте модификатор:
+.iq-cookie-consent--theme-{ваше-название} .iq-cookie-consent__panel {
+    background: #ваш-цвет;
+    color: #ваш-цвет-текста;
+}
+
+Настройка CSS переменных через JavaScript:
+const config = {
+    style: {
+        primary: '#ff6b35',          // Оранжевый основной цвет
+        primaryHover: '#e55a2b',     // Темнее при наведении
+        background: '#f8f9fa',       // Светло-серый фон
+        text: '#2c3e50',            // Темно-синий текст
+        radius: '12px',             // Более округлые углы
+        spacing: '24px'             // Больше отступы
+    }
+};
+
+Пример использования собственных CSS классов для кнопок:
+const config = {
+    ui: {
+        buttonClasses: {
+            primary: 'ui-btn btn-primary',     // Ваши акцентные кнопки
+            secondary: 'ui-btn btn-outline'    // Ваши обычные кнопки
+        }
+    }
+};
+
+Или комбинация ваших и базовых классов:
+buttonClasses: {
+    primary: 'iq-cookie-consent__button iq-cookie-consent__button--primary my-custom-btn',
+    secondary: 'iq-cookie-consent__button iq-cookie-consent__button--secondary my-outline-btn'
+}
+
+Пример темной темы:
+.iq-cookie-consent--theme-dark .iq-cookie-consent__panel {
+    background: #2d3748;
+    color: #e2e8f0;
+}
+.iq-cookie-consent--theme-dark .iq-cookie-consent__title {
+    color: #f7fafc;
+}
+*/ 
