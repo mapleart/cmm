@@ -18,7 +18,7 @@ class CookieConsentManager {
     private $base_dir;
     private $assets_dir;
     private $security_token;
-    private $github_repo = 'https://raw.githubusercontent.com/mapleart/cmm/refs/heads/main/dist';
+    private $github_repo = 'https://raw.githubusercontent.com/mapleart/cmm/refs/heads/main/dist/';
 
     // Файлы для скачивания из репозитория
     private $files = array(
