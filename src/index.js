@@ -1,12 +1,13 @@
 import './cookie-consent-styles.css'
-import { CookieConsentConfigurable } from './cookie-consent-configurable.js'
+import { CookieConsentConfigurable, createCookieConsent } from './cookie-consent-configurable.js'
 
-// Экспортируем класс для использования как ES модуль
-export { CookieConsentConfigurable }
+// Экспортируем класс и функцию для использования как ES модуль
+export { CookieConsentConfigurable, createCookieConsent }
 
-// Также делаем доступным как глобальную переменную для UMD сборки
+// Также делаем доступными как глобальные переменные для UMD сборки
 if (typeof window !== 'undefined') {
   window.CookieConsentConfigurable = CookieConsentConfigurable
+  window.createCookieConsent = createCookieConsent
 }
 
 export default CookieConsentConfigurable 

@@ -3,18 +3,20 @@ import { resolve } from 'path'
 
 export default defineConfig({
   build: {
+    lib: {
+      entry: resolve(__dirname, 'src/index.js'),
+      name: 'CookieConsentModule',
+      formats: ['es', 'umd'],
+      fileName: (format) => {
+        if (format === 'umd') return 'ccm.js'
+        return `ccm.${format}.js`
+      }
+    },
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'demo.html')
-      },
       output: {
         exports: 'named',
-        entryFileNames: 'ccm.js',
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
-            return 'ccm.css'
-          }
-          return assetInfo.name
+        globals: {
+          // Добавляем глобальные переменные если нужно
         }
       }
     },
@@ -29,7 +31,7 @@ export default defineConfig({
     }
   },
   server: {
-    open: '/demo.html',
+    open: '/index.html',
     port: 3000
   },
   // Настройка для dev mode
