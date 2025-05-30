@@ -7,7 +7,7 @@
 class CookieConsentConfigurable {
     constructor(userConfig = {}) {
         // Версия модуля для совместимости
-        this.version = '2.1.0';
+        this.version = '2.1.1';
         
         // Конфигурация по умолчанию
         this.defaultConfig = {

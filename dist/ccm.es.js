@@ -5,7 +5,7 @@
  */
 class a {
   constructor(e = {}) {
-    this.version = "2.1.0", this.defaultConfig = {
+    this.version = "2.1.1", this.defaultConfig = {
       // Основные настройки
       storageKey: "cookie_consent_configurable",
       debug: !1,
