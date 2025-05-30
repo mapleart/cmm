@@ -428,7 +428,7 @@ class CookieConsentConfigurable {
         // Полный интерфейс
         const description = this.config.texts.description.replace(
             '{policyLink}',
-            `<a href="${this.config.texts.policyUrl}">${this.config.texts.policyLinkText}</a>`
+            `<a href="${this.config.texts.policyUrl}" target="_blank">${this.config.texts.policyLinkText}</a>`
         );
 
         return `
