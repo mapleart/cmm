@@ -323,7 +323,9 @@
     margin-top: var(--iq-cookie-spacing);
     flex-shrink: 0;
 }
-
+.iq-cookie-consent__buttons * {
+    width: 100%;
+}
 .iq-cookie-consent__buttons--simple {
     margin-top: 0;
 }

@@ -859,3 +859,6 @@ if (typeof module !== 'undefined' && module.exports) {
     window.CookieConsentConfigurable = CookieConsentConfigurable;
     window.createCookieConsent = createCookieConsent;
 }
+
+// ES6 экспорт для современных модульных сборщиков
+export { CookieConsentConfigurable, createCookieConsent }
