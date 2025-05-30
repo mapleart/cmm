@@ -22,8 +22,8 @@ class CookieConsentManager {
 
     // Файлы для скачивания из репозитория
     private $files = array(
-        'ccm.js' => 'assets/cookie-consent/cookie-consent-configurable.js',
-        'ccm.css' => 'assets/cookie-consent/cookie-consent-styles.css'
+        'ccm.js' => 'assets/cookie-consent/ccm.js',
+        'ccm.css' => 'assets/cookie-consent/ccm.css'
     );
 
     public function __construct() {
@@ -456,11 +456,11 @@ function cookie_consent_init($config = array()) {
     $config = array_merge($default_config, $config);
 
     // Подключаем CSS
-    echo '<link rel="stylesheet" href="/assets/cookie-consent/cookie-consent-styles.css">' . "\n";
+    echo '<link rel="stylesheet" href="/assets/cookie-consent/ccm.css">' . "\n";
 
     // Подключаем JS с настройками
     echo '<script data-skip-moving="true">window.cookieConsentConfig = ' . json_encode($config) . ';</script>' . "\n";
-    echo '<script src="/assets/cookie-consent/cookie-consent-configurable.js" data-skip-moving="true"></script>' . "\n";
+    echo '<script src="/assets/cookie-consent/ccm.js" data-skip-moving="true"></script>' . "\n";
 }
 
 /**
