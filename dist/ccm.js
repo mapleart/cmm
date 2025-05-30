@@ -62,7 +62,7 @@
                     </button>
                 </div>
             </div>
-        `}generateSimpleHTML(){const e=this.config.texts.simpleDescription.replace("{policyLink}",`<a href="${this.config.texts.policyUrl}">${this.config.texts.policyLinkText}</a>`);return`
+        `}generateSimpleHTML(){const e=this.config.texts.simpleDescription.replace("{policyLink}",`<a href="${this.config.texts.policyUrl}" target="_blank">${this.config.texts.policyLinkText}</a>`);return`
             <div class="iq-cookie-consent__panel iq-cookie-consent__panel--simple">
                 <div class="iq-cookie-consent__header">
                     <span class="iq-cookie-consent__title">${this.config.texts.title}</span>
