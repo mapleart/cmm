@@ -23,7 +23,7 @@ class CookieConsentManager {
     // Файлы для скачивания из репозитория
     private $files = array(
         'ccm.js' => 'assets/cookie-consent/ccm.js',
-        'ccm.css' => 'assets/cookie-consent/ccm.css'
+        'style.css' => 'assets/cookie-consent/ccm.css'
     );
 
     public function __construct() {
@@ -411,6 +411,23 @@ class CookieConsentManager {
 }
 
 /**
+ * Рекурсивное слияние массивов
+ */
+function array_merge_recursive_custom($array1, $array2) {
+    $merged = $array1;
+
+    foreach ($array2 as $key => $value) {
+        if (is_array($value) && isset($merged[$key]) && is_array($merged[$key])) {
+            $merged[$key] = array_merge_recursive_custom($merged[$key], $value);
+        } else {
+            $merged[$key] = $value;
+        }
+    }
+
+    return $merged;
+}
+
+/**
  * Функция инициализации виджета (для использования в PHP коде сайта)
  */
 function cookie_consent_init($config = array()) {
@@ -425,10 +442,6 @@ function cookie_consent_init($config = array()) {
         'language' => 'ru',
         'autoInit' => true,
 
-        // UI настройки
-        'ui' => array(
-
-        ),
 
         // Стили
         'style' => array(
@@ -453,14 +466,16 @@ function cookie_consent_init($config = array()) {
         )
     );
 
-    $config = array_merge($default_config, $config);
+    $config = array_merge_recursive_custom($default_config, $config);
 
     // Подключаем CSS
     echo '<link rel="stylesheet" href="/assets/cookie-consent/ccm.css">' . "\n";
 
-    // Подключаем JS с настройками
-    echo '<script data-skip-moving="true">window.cookieConsentConfig = ' . json_encode($config) . ';</script>' . "\n";
+    // Подключаем JS и сразу создаем виджет
     echo '<script src="/assets/cookie-consent/ccm.js" data-skip-moving="true"></script>' . "\n";
+    echo '<script data-skip-moving="true">
+    const cookieConsent = createCookieConsent(' . json_encode($config) . ');
+</script>' . "\n";
 }
 
 /**
