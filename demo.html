@@ -65,33 +65,6 @@
         <pre id="statusContent"></pre>
     </div>
 
-    <script type="module">
-        import { CookieConsentConfigurable } from './src/index.js'
-        
-        // Создаем экземпляр
-        const cookieConsent = new CookieConsentConfigurable({
-            debug: true,
-            position: 'bottom-center',
-            mode: 'full'
-        })
-        
-        // Глобальные функции для демо
-        window.showCookieConsent = () => {
-            cookieConsent.show()
-        }
-        
-        window.clearCookieConsent = () => {
-            cookieConsent.clearData()
-            console.log('Cookie consent data cleared')
-        }
-        
-        window.getCookieStatus = () => {
-            const status = cookieConsent.getConsentStatus()
-            document.getElementById('status').style.display = 'block'
-            document.getElementById('statusContent').textContent = JSON.stringify(status, null, 2)
-        }
-        
-        console.log('Cookie Consent Demo loaded with Vite!')
-    </script>
+<script src="src/index.js" type="module"></script>
 </body>
-</html> 
+</html>
