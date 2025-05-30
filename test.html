@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест createCookieConsent</title>
+    <link rel="stylesheet" href="dist/style.css">
+</head>
+<body>
+    <h1>Тест глобальной доступности createCookieConsent</h1>
+    
+    <button onclick="testCreateFunction()">Тест createCookieConsent</button>
+    <button onclick="testWindowFunction()">Тест window.createCookieConsent</button>
+    
+    <div id="result"></div>
+
+    <script src="dist/ccm.js"></script>
+    <script>
+        function testCreateFunction() {
+            try {
+                const consent = createCookieConsent({
+                    debug: true,
+                    position: 'bottom-center'
+                });
+                document.getElementById('result').innerHTML = '<p style="color: green;">✅ createCookieConsent работает!</p>';
+                console.log('createCookieConsent успешно создан:', consent);
+            } catch (error) {
+                document.getElementById('result').innerHTML = '<p style="color: red;">❌ Ошибка createCookieConsent: ' + error.message + '</p>';
+                console.error('Ошибка createCookieConsent:', error);
+            }
+        }
+        
+        function testWindowFunction() {
+            try {
+                const consent = window.createCookieConsent({
+                    debug: true,
+                    position: 'top-center'
+                });
+                document.getElementById('result').innerHTML = '<p style="color: green;">✅ window.createCookieConsent работает!</p>';
+                console.log('window.createCookieConsent успешно создан:', consent);
+            } catch (error) {
+                document.getElementById('result').innerHTML = '<p style="color: red;">❌ Ошибка window.createCookieConsent: ' + error.message + '</p>';
+                console.error('Ошибка window.createCookieConsent:', error);
+            }
+        }
+
+        // Проверяем доступность функций после загрузки
+        window.addEventListener('load', function() {
+            console.log('Доступные функции в window:');
+            console.log('typeof createCookieConsent:', typeof createCookieConsent);
+            console.log('typeof window.createCookieConsent:', typeof window.createCookieConsent);
+            console.log('typeof CookieConsentConfigurable:', typeof CookieConsentConfigurable);
+            console.log('typeof window.CookieConsentConfigurable:', typeof window.CookieConsentConfigurable);
+        });
+    </script>
+</body>
+</html> 
